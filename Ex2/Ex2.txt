@@ -1,0 +1,42 @@
+#include <DHT.h>
+
+#define DHTPIN 2
+#define DHTTYPE DHT22
+DHT dht(DHTPIN, DHTTYPE);
+
+const int ldrPin = A0;
+const int irPin = 3;
+const int ledPin = 13;
+
+void setup() {
+  Serial.begin(9600);
+  dht.begin();
+  pinMode(irPin, INPUT);
+  pinMode(ledPin, OUTPUT);
+  randomSeed(analogRead(A1));
+}
+
+void loop() {
+  float temp = dht.readTemperature() + random(-5, 5) * 0.1;
+  int light = constrain(analogRead(ldrPin) + random(-100, 100), 0, 1023);
+  int ir = random(0, 2); // Simulated IR sensor (use digitalRead(irPin) for real sensor)
+
+  Serial.print("Temp: ");
+  Serial.print(temp, 2);
+  Serial.print(" °C, Light: ");
+  Serial.print(light);
+  Serial.print(", IR: ");
+  Serial.println(ir);
+
+  if (ir == 1) {
+    digitalWrite(ledPin, HIGH);
+    delay(200);               // LED ON for 200ms
+    digitalWrite(ledPin, LOW);
+  }
+
+  delay(1800); // remaining time for total 2 seconds loop
+}
+
+
+
+//use this link if any doubt--->https://wokwi.com/projects/438508626424464385
