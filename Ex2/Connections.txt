@@ -1,0 +1,28 @@
+DHT22
+
+-VCC TO 5V Arduino
+-GND to GND Arduino
+-SDA to pin-2(Arduino)
+
+LDR
+
+-VCC to 5V Arduino
+-DO to A0 Arduino
+-A0 to Resistor(r1:1)
+-GND to Resistor(r1:2)
+
+IR receiver
+
+-VCC to 5V Arduino
+-GND to GND Arduino
+-DAT to pin-3(Arduino)
+
+LED
+
+-led1:A to pin-13(Arduino)
+-led1:C to GND
+
+BUZZER
+
+bz1:1 to pin 8(Arduino)
+bz1:2 to GND
