@@ -72,7 +72,7 @@ void loop() {
 
   delay(20000); // Send data every 20 seconds
 }
-
+//https://wokwi.com/projects/439783857666388993
 /*
 //Connections
 DHT22
@@ -85,4 +85,5 @@ LED
 BUZZER
 -bz:1-esp:18
 -bz:2-esp:GND.2
+
 */
