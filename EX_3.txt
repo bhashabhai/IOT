@@ -30,4 +30,9 @@ while True:
     time.sleep(1)  # Wait 1 second
 
 
+
 //https://wokwi.com/projects/439778615279551489
+//In simple the project is about - "Turn an LED ON and OFF repeatedly"
+//The LED blinks ON/OFF every 1 second continuously.
+//When you stop simulation in Wokwi (red square button), the LED stops.
+//Since Wokwi doesn’t really use GPIO.cleanup(), the "reset GPIO" part is not applicable.
