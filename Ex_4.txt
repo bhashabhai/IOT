@@ -1,0 +1,52 @@
+#include <WiFi.h>         // For ESP32
+#include <HTTPClient.h>   // For ESP32
+
+const char* ssid = "Wokwi-GUEST";   // Default Wokwi WiFi
+const char* password = "";          // No password
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.begin(ssid, password);
+  Serial.print("Connecting to WiFi");
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+
+  Serial.println("\nWiFi connected");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+}
+
+void loop() {
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+
+    // Example HTTP GET request
+    http.begin("http://httpbin.org/get?data=HelloArduino");
+    int httpCode = http.GET();
+
+    if (httpCode > 0) {
+      String payload = http.getString();
+      Serial.println("HTTP Response code: " + String(httpCode));
+      Serial.println("Response: " + payload);
+    } else {
+      Serial.println("Error on HTTP request");
+    }
+
+    http.end();
+  } else {
+    Serial.println("WiFi Disconnected");
+  }
+
+  delay(10000); // Wait 10 seconds before next request
+}
+
+
+//https://wokwi.com/projects/439780437832268801
+
+//steps to build 
+//Go to website click the ESP32 simulate 
+//Then you are taken to next page there choose the ESP32(under Starter Templates)
+//Then you will get into the working environment update the code and see the output
