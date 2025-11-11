@@ -1,0 +1,13 @@
+const int sensorPin = A0;
+
+void setup() {
+  Serial.begin(9600);
+  Serial.println("Light Sensor Reading:");
+}
+
+void loop() {
+  int value = analogRead(sensorPin);
+  Serial.print("LDR Value: ");
+  Serial.println(value);
+  delay(1000);
+}
