@@ -1,0 +1,35 @@
+#include <WiFi.h>
+
+#define WIFI_SSID "Wokwi-GUEST"
+#define WIFI_PASSWORD ""
+
+// Soil moisture analog pin (connect sensor OUT → GPIO 34)
+#define SOIL_MOISTURE_PIN 34
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("🌱 Soil Moisture Monitor Starting...");
+
+  // Connect to Wi-Fi
+  Serial.print("Connecting to WiFi");
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\n✅ Connected to WiFi (Wokwi Simulation)");
+
+  // Ready message
+  Serial.println("System ready! Reading soil moisture every 2 seconds...");
+}
+
+void loop() {
+  int soilMoistureValue = analogRead(SOIL_MOISTURE_PIN);
+  Serial.print("Soil Moisture Value: ");
+  Serial.println(soilMoistureValue);
+
+  // Simulated action instead of Firebase
+  Serial.println("Pretending to send data to Firebase...");
+
+  delay(2000);  // Read every 2 seconds
+}
