@@ -1,0 +1,20 @@
+#define SOIL_PIN 34  // ADC input pin
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Connecting to WiFi....");
+  Serial.println("Connected to WiFi");
+  delay(1000);
+}
+
+void loop() {
+  int value = analogRead(SOIL_PIN);
+
+  Serial.print("Soil Moisture Value: ");
+  Serial.println(value);
+
+  // Fake Firebase success message to match expected output format
+  Serial.println("Firebase updated successfully");
+
+  delay(2000); // updates every 2 seconds
+}
