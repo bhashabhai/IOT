@@ -11,3 +11,6 @@ void loop() {
   Serial.println(value);
   delay(1000);
 }
+
+
+//https://wokwi.com/projects/447302758531581953
