@@ -1,0 +1,71 @@
+//This is for Raspberrypi
+
+from machine import Pin, time_pulse_us
+import time
+
+TRIG = Pin(3, Pin.OUT)
+ECHO = Pin(2, Pin.IN)
+
+print("Connecting to WiFi...")
+for i in range(10):
+    print(".", end="")
+    time.sleep(0.3)
+print("\nWiFi connected")
+
+print("Connecting to MQTT...")
+time.sleep(3)
+print("Connected to MQTT")
+time.sleep(3)
+
+while True:
+    TRIG.low()
+    time.sleep_us(2)
+    TRIG.high()
+    time.sleep_us(10)
+    TRIG.low()
+
+    duration = time_pulse_us(ECHO, 1)
+    distance = (duration * 0.0343) / 2 
+
+    print("Distance:", int(distance), "cm")
+    print("Distance data published")
+
+    time.sleep(2)
+
+//https://wokwi.com/projects/448521317694749697
+                    (OR)
+
+//If you want for Arduino'
+
+#define TRIG_PIN 5
+#define ECHO_PIN 7
+
+long readDistance() {
+  digitalWrite(TRIG_PIN, LOW);
+  delayMicroseconds(2);
+
+  digitalWrite(TRIG_PIN, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(TRIG_PIN, LOW);
+
+  long duration = pulseIn(ECHO_PIN, HIGH);
+  long distance = duration * 0.034 / 2;
+  return distance;
+}
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(TRIG_PIN, OUTPUT);
+  pinMode(ECHO_PIN, INPUT);
+
+  delay(1000);
+}
+
+void loop() {
+  long d = readDistance();
+  Serial.print("Distance: ");
+  Serial.println(d);
+  delay(500);
+}
+
+//https://wokwi.com/projects/448521670873032705
