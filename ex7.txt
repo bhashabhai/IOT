@@ -68,4 +68,30 @@ void loop() {
   delay(500);
 }
 
+
 //https://wokwi.com/projects/448521670873032705
+
+
+OR
+
+
+#define TRIG 5
+#define ECHO 7
+
+void setup() {
+  Serial.begin(115200);
+  pinMode(TRIG, OUTPUT);
+  pinMode(ECHO, INPUT);
+}
+
+void loop() {
+  digitalWrite(TRIG, LOW); delayMicroseconds(2);
+  digitalWrite(TRIG, HIGH); delayMicroseconds(10);
+  digitalWrite(TRIG, LOW);
+
+  long d = pulseIn(ECHO, HIGH) * 0.034 / 2;
+  Serial.println(d);
+  delay(500);
+}
+
+https://wokwi.com/projects/448667256075659265
